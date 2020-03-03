@@ -3,6 +3,7 @@
 ######
 
 resource "azurerm_public_ip" "this_virtual_network_gateway_public_ip" {
+  count               = var.enabled ? 1 : 0
   name                = var.virtual_network_gateway_public_ip_name
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -16,6 +17,7 @@ resource "azurerm_public_ip" "this_virtual_network_gateway_public_ip" {
 }
 
 resource "azurerm_virtual_network_gateway" "this_virtual_network_gateway" {
+  count               = var.enabled ? 1 : 0
   name                = var.virtual_network_gateway_name
   location            = var.location
   resource_group_name = var.resource_group_name.name
@@ -38,6 +40,7 @@ resource "azurerm_virtual_network_gateway" "this_virtual_network_gateway" {
 
 
 resource "azurerm_express_route_circuit" "this_express_route_circuit" {
+  count               = var.enabled ? 1 : 0
   name                = var.express_route_circuit_name
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -59,6 +62,7 @@ resource "azurerm_express_route_circuit" "this_express_route_circuit" {
 }
 
 resource "azurerm_express_route_circuit_peering" "this_express_route_circuit_private_peering" {
+  count                      = var.enabled && var.enable_peering_and_connection ? 1 : 0
   resource_group_name        = var.resource_group_name
   express_route_circuit_name = azurerm_express_route_circuit.this_express_route_circuit.name
 
@@ -71,6 +75,7 @@ resource "azurerm_express_route_circuit_peering" "this_express_route_circuit_pri
 }
 
 resource "azurerm_express_route_circuit_peering" "this_express_route_circuit_microsoft_peering" {
+  count                      = var.enabled && var.enable_peering_and_connection ? 1 : 0
   resource_group_name        = var.resource_group_name
   express_route_circuit_name = azurerm_express_route_circuit.this_express_route_circuit.name
 
@@ -87,12 +92,14 @@ resource "azurerm_express_route_circuit_peering" "this_express_route_circuit_mic
 }
 
 resource "azurerm_express_route_circuit_authorization" "this_express_route_circuit_authorization" {
+  count                      = var.enabled && var.enable_peering_and_connection ? 1 : 0
   resource_group_name        = var.resource_group_name
   name                       = var.prod_networking_express_route_circuit_authorization_name
   express_route_circuit_name = azurerm_express_route_circuit.this_express_route_circuit.name
 }
 
 resource "azurerm_virtual_network_gateway_connection" "this_virtual_network_gateway_connection_express_route" {
+  count               = var.enabled && var.enable_peering_and_connection ? 1 : 0
   name                = "ExpressRoute"
   location            = var.location
   resource_group_name = var.resource_group_name
