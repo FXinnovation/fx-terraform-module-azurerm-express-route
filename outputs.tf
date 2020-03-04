@@ -92,5 +92,6 @@ output "express_route_circuit_authorization_authorization_use_status" {
 }
 
 output "express_route_virtual_network_gateway_connection" {
-  value = azurerm_virtual_network_gateway_connection.this_virtual_network_gateway_connection_express_route.id
+  description = "Id of the connection between the virtual network gateway and the ExpressRoute circuit."
+  value       = azurerm_virtual_network_gateway_connection.this_virtual_network_gateway_connection_express_route.id
 }

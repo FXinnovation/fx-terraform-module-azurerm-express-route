@@ -62,7 +62,7 @@ There is a toggle to enable to proceed with the second configuration of the Expr
 | express\_route\_circuit\_private\_peering\_secondary\_azure\_port | Secondary Port Used by Azure for the peering. |
 | express\_route\_circuit\_service\_key | Service Key of the deployed ExpressRoute circuit. You need to provide this to the external provider. |
 | express\_route\_circuit\_service\_provider\_provisioning\_state | Provisioning state of the circuit of the deployed ExpressRoute circuit. |
-| express\_route\_virtual\_network\_gateway\_connection | n/a |
+| express\_route\_virtual\_network\_gateway\_connection | Id of the connection between the virtual network gateway and the ExpressRoute circuit. |
 | public\_ip\_fqdn | FQDN of the provisioned public IP address. |
 | public\_ip\_id | Id of the provisioned public IP address. |
 | virtual\_network\_gateway\_id | ID of the deployed virtual network gateway. |
