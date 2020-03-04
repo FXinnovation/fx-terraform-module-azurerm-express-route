@@ -46,7 +46,26 @@ There is a toggle to enable to proceed with the second configuration of the Expr
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| express\_route\_circuit\_authorization\_authorization\_key | Authorization key of the ExpressRoute circuit authorization. |
+| express\_route\_circuit\_authorization\_authorization\_use\_status | Status of the authorization of the ExpressRoute circuit authorization. |
+| express\_route\_circuit\_authorization\_id | Resource Id of the ExpressRoute circuit authorization. |
+| express\_route\_circuit\_id | Id of the deployed ExpressRoute circuit. |
+| express\_route\_circuit\_microsoft\_peering\_azure\_asn | ASN used by Azure |
+| express\_route\_circuit\_microsoft\_peering\_id | Resource Id of the ExpressRoute circuit peering |
+| express\_route\_circuit\_microsoft\_peering\_primary\_azure\_port | Primary port used by Azure for the peering. |
+| express\_route\_circuit\_microsoft\_peering\_secondary\_azure\_port | Secondary Port Used by Azure for the peering. |
+| express\_route\_circuit\_private\_peering\_azure\_asn | ASN used by Azure |
+| express\_route\_circuit\_private\_peering\_id | Resource Id of the ExpressRoute circuit peering |
+| express\_route\_circuit\_private\_peering\_primary\_azure\_port | Primary port used by Azure for the peering. |
+| express\_route\_circuit\_private\_peering\_secondary\_azure\_port | Secondary Port Used by Azure for the peering. |
+| express\_route\_circuit\_service\_key | Service Key of the deployed ExpressRoute circuit. You need to provide this to the external provider. |
+| express\_route\_circuit\_service\_provider\_provisioning\_state | Provisioning state of the circuit of the deployed ExpressRoute circuit. |
+| express\_route\_virtual\_network\_gateway\_connection | n/a |
+| public\_ip\_fqdn | FQDN of the provisioned public IP address. |
+| public\_ip\_id | Id of the provisioned public IP address. |
+| virtual\_network\_gateway\_id | ID of the deployed virtual network gateway. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Examples
