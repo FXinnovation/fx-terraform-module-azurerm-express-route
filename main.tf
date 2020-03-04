@@ -67,11 +67,11 @@ resource "azurerm_express_route_circuit_peering" "this_express_route_circuit_pri
   express_route_circuit_name = azurerm_express_route_circuit.this_express_route_circuit.name
 
   peering_type                  = "AzurePrivatePeering"
-  peer_asn                      = 65901
-  primary_peer_address_prefix   = "172.19.253.236/30"
-  secondary_peer_address_prefix = "172.19.253.232/30"
-  vlan_id                       = 1005
-  shared_key                    = var.prod_networking_express_route_circuit_peering_shared_key
+  peer_asn                      = var.private_peering_peer_asn
+  primary_peer_address_prefix   = var.private_peering_primary_peer_address_prefix
+  secondary_peer_address_prefix = var.private_peering_secondary_peer_address_prefix
+  vlan_id                       = var.private_peering_vlan_id
+  shared_key                    = var.private_peering_shared_key
 }
 
 resource "azurerm_express_route_circuit_peering" "this_express_route_circuit_microsoft_peering" {
@@ -80,14 +80,14 @@ resource "azurerm_express_route_circuit_peering" "this_express_route_circuit_mic
   express_route_circuit_name = azurerm_express_route_circuit.this_express_route_circuit.name
 
   peering_type                  = "MicrosoftPeering"
-  peer_asn                      = 65901
-  primary_peer_address_prefix   = "172.19.253.236/30"
-  secondary_peer_address_prefix = "172.19.253.232/30"
-  vlan_id                       = 1005
-  shared_key                    = var.prod_networking_express_route_circuit_peering_shared_key
+  peer_asn                      = var.microsoft_peering_peer_asn
+  primary_peer_address_prefix   = var.microsoft_peering_primary_peer_address_prefix
+  secondary_peer_address_prefix = var.microsoft_peering_secondary_peer_address_prefix
+  vlan_id                       = var.microsoft_peering_vlan_id
+  shared_key                    = var.microsoft_peering_shared_key
 
   microsoft_peering_config {
-    advertised_public_prefixes = ["123.1.0.0/24"]
+    advertised_public_prefixes = var.microsoft_peering_onpremises_advertised_public_prefixes
   }
 }
 
