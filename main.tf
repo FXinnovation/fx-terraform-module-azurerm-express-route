@@ -2,7 +2,7 @@
 # Resources - prod_networking - ExpressRoute
 ######
 
-resource "azurerm_public_ip" "this_virtual_network_gateway_public_ip" {
+resource "azurerm_public_ip" "this" {
   count               = var.enabled ? 1 : 0
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -16,7 +16,7 @@ resource "azurerm_public_ip" "this_virtual_network_gateway_public_ip" {
   )
 }
 
-resource "azurerm_virtual_network_gateway" "this_virtual_network_gateway" {
+resource "azurerm_virtual_network_gateway" "this" {
   count               = var.enabled ? 1 : 0
   location            = var.location
   resource_group_name = var.resource_group_name.name
@@ -26,7 +26,7 @@ resource "azurerm_virtual_network_gateway" "this_virtual_network_gateway" {
   sku  = var.virtual_network_gateway_sku
 
   ip_configuration {
-    public_ip_address_id          = azurerm_public_ip.this_virtual_network_gateway_public_ip.id
+    public_ip_address_id          = azurerm_public_ip.this.id
     private_ip_address_allocation = "Dynamic"
     subnet_id                     = var.gatewaysubnet_subnet_id
   }
@@ -39,7 +39,7 @@ resource "azurerm_virtual_network_gateway" "this_virtual_network_gateway" {
 }
 
 
-resource "azurerm_express_route_circuit" "this_express_route_circuit" {
+resource "azurerm_express_route_circuit" "this" {
   count               = var.enabled ? 1 : 0
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -61,10 +61,10 @@ resource "azurerm_express_route_circuit" "this_express_route_circuit" {
   )
 }
 
-resource "azurerm_express_route_circuit_peering" "this_express_route_circuit_private_peering" {
+resource "azurerm_express_route_circuit_peering" "this_private_peering" {
   count                      = var.enabled && var.enable_peering_and_connection ? 1 : 0
   resource_group_name        = var.resource_group_name
-  express_route_circuit_name = azurerm_express_route_circuit.this_express_route_circuit.name
+  express_route_circuit_name = azurerm_express_route_circuit.this.name
 
   peering_type                  = "AzurePrivatePeering"
   peer_asn                      = var.private_peering_peer_asn
@@ -74,10 +74,10 @@ resource "azurerm_express_route_circuit_peering" "this_express_route_circuit_pri
   shared_key                    = var.private_peering_shared_key
 }
 
-resource "azurerm_express_route_circuit_peering" "this_express_route_circuit_microsoft_peering" {
+resource "azurerm_express_route_circuit_peering" "this_microsoft_peering" {
   count                      = var.enabled && var.enable_peering_and_connection ? 1 : 0
   resource_group_name        = var.resource_group_name
-  express_route_circuit_name = azurerm_express_route_circuit.this_express_route_circuit.name
+  express_route_circuit_name = azurerm_express_route_circuit.this.name
 
   peering_type                  = "MicrosoftPeering"
   peer_asn                      = var.microsoft_peering_peer_asn
@@ -91,23 +91,23 @@ resource "azurerm_express_route_circuit_peering" "this_express_route_circuit_mic
   }
 }
 
-resource "azurerm_express_route_circuit_authorization" "this_express_route_circuit_authorization" {
+resource "azurerm_express_route_circuit_authorization" "this" {
   count                      = var.enabled && var.enable_peering_and_connection ? 1 : 0
   resource_group_name        = var.resource_group_name
   name                       = var.express_route_circuit_authorization_name
-  express_route_circuit_name = azurerm_express_route_circuit.this_express_route_circuit.name
+  express_route_circuit_name = azurerm_express_route_circuit.this.name
 }
 
-resource "azurerm_virtual_network_gateway_connection" "this_virtual_network_gateway_connection_express_route" {
+resource "azurerm_virtual_network_gateway_connection" "this" {
   count               = var.enabled && var.enable_peering_and_connection ? 1 : 0
   name                = "ExpressRoute"
   location            = var.location
   resource_group_name = var.resource_group_name
 
   type                       = "ExpressRoute"
-  virtual_network_gateway_id = azurerm_virtual_network_gateway.this_virtual_network_gateway.id
-  express_route_circuit_id   = azurerm_express_route_circuit.this_express_route_circuit.id
-  authorization_key          = azurerm_express_route_circuit_authorization.this_express_route_circuit_authorization.authorization_key
+  virtual_network_gateway_id = azurerm_virtual_network_gateway.this.id
+  express_route_circuit_id   = azurerm_express_route_circuit.this.id
+  authorization_key          = azurerm_express_route_circuit_authorization.this.authorization_key
   tags = merge(
     {
       "Terraform" = "true"
