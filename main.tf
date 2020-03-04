@@ -4,9 +4,9 @@
 
 resource "azurerm_public_ip" "this_virtual_network_gateway_public_ip" {
   count               = var.enabled ? 1 : 0
-  name                = var.virtual_network_gateway_public_ip_name
   location            = var.location
   resource_group_name = var.resource_group_name
+  name                = var.virtual_network_gateway_public_ip_name
   allocation_method   = "Dynamic"
   tags = merge(
     {
@@ -18,12 +18,12 @@ resource "azurerm_public_ip" "this_virtual_network_gateway_public_ip" {
 
 resource "azurerm_virtual_network_gateway" "this_virtual_network_gateway" {
   count               = var.enabled ? 1 : 0
-  name                = var.virtual_network_gateway_name
   location            = var.location
   resource_group_name = var.resource_group_name.name
+  name                = var.virtual_network_gateway_name
 
   type = "ExpressRoute"
-  sku  = var.express_route_virtual_network_gateway_sku
+  sku  = var.virtual_network_gateway_sku
 
   ip_configuration {
     public_ip_address_id          = azurerm_public_ip.this_virtual_network_gateway_public_ip.id
@@ -41,9 +41,9 @@ resource "azurerm_virtual_network_gateway" "this_virtual_network_gateway" {
 
 resource "azurerm_express_route_circuit" "this_express_route_circuit" {
   count               = var.enabled ? 1 : 0
-  name                = var.express_route_circuit_name
   location            = var.location
   resource_group_name = var.resource_group_name
+  name                = var.express_route_circuit_name
 
   service_provider_name = var.express_route_circuit_service_provider_name
   peering_location      = var.express_route_circuit_service_provider_peering_location
@@ -94,7 +94,7 @@ resource "azurerm_express_route_circuit_peering" "this_express_route_circuit_mic
 resource "azurerm_express_route_circuit_authorization" "this_express_route_circuit_authorization" {
   count                      = var.enabled && var.enable_peering_and_connection ? 1 : 0
   resource_group_name        = var.resource_group_name
-  name                       = var.prod_networking_express_route_circuit_authorization_name
+  name                       = var.express_route_circuit_authorization_name
   express_route_circuit_name = azurerm_express_route_circuit.this_express_route_circuit.name
 }
 
