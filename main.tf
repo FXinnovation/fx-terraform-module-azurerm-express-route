@@ -19,7 +19,7 @@ resource "azurerm_public_ip" "this" {
 resource "azurerm_virtual_network_gateway" "this" {
   count               = var.enabled ? 1 : 0
   location            = var.location
-  resource_group_name = var.resource_group_name.name
+  resource_group_name = var.resource_group_name
   name                = var.virtual_network_gateway_name
 
   type = "ExpressRoute"
