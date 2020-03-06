@@ -40,6 +40,7 @@ There is a toggle to enable to proceed with the second configuration of the Expr
 | private\_peering\_shared\_key | Shared key for the authentication on the private peering. | `string` | `""` | no |
 | private\_peering\_vlan\_id | Client Vlan ID of the private peering. | `number` | `2048` | no |
 | resource\_group\_name | Resource group where the resource will be deployed. | `string` | n/a | yes |
+| tags | Tags to add to the resource. | `map` | `{}` | no |
 | virtual\_network\_gateway\_name | Name of the virutal network gateway to deploy. | `string` | n/a | yes |
 | virtual\_network\_gateway\_public\_ip\_name | Name of the public IP address to be assigned to the virutal network gateway. | `string` | n/a | yes |
 | virtual\_network\_gateway\_sku | ExpressRoute SKU of the virtual network gateway to deploy. Remember that there's particular SKUs for ExpressRoute. | `string` | n/a | yes |

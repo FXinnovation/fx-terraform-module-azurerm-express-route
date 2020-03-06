@@ -51,10 +51,11 @@ module "az_expressroute_demo" {
   source                                                  = "../../"
   resource_group_name                                     = module.az_rg_demo.name
   location                                                = module.az_rg_demo.location
+  tags                                                    = local.tags
   virtual_network_gateway_public_ip_name                  = "fxcozca1dgenvg${random_string.this.result}-pip"
   virtual_network_gateway_name                            = "fxcozca1dgenvg${random_string.this.result}"
   virtual_network_gateway_sku                             = "ErGw1AZ"
-  gatewaysubnet_subnet_id                                 = lookup(module.az_vnet_demo.subnet_ids_map, "GatewaySubnet")
+  gatewaysubnet_subnet_id                                 = lookup(module.az_vnet_demo.subnets_ids_map, "GatewaySubnet")
   express_route_circuit_name                              = "fxcozca1dgenvg${random_string.this.result}-circuit"
   express_route_circuit_service_provider_name             = "Equinix"
   express_route_circuit_service_provider_peering_location = "Toronto"

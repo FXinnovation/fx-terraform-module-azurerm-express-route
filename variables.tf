@@ -14,6 +14,12 @@ variable "resource_group_name" {
   type        = string
 }
 
+variable "tags" {
+  description = "Tags to add to the resource."
+  type        = map
+  default     = {}
+}
+
 variable "virtual_network_gateway_public_ip_name" {
   description = "Name of the public IP address to be assigned to the virutal network gateway."
   type        = string
