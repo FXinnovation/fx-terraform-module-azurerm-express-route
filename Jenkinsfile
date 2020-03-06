@@ -1,1 +1,1 @@
-//fxAzureTerraformPipeline()
+fxAzureTerraformPipeline()
