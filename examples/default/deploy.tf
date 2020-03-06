@@ -54,12 +54,12 @@ module "az_expressroute_demo" {
   tags                                                    = local.tags
   virtual_network_gateway_public_ip_name                  = "fxcozca1dgenvg${random_string.this.result}-pip"
   virtual_network_gateway_name                            = "fxcozca1dgenvg${random_string.this.result}"
-  virtual_network_gateway_sku                             = "ErGw1AZ"
+  virtual_network_gateway_sku                             = "Standard"
   gatewaysubnet_subnet_id                                 = lookup(module.az_vnet_demo.subnets_ids_map, "GatewaySubnet")
   express_route_circuit_name                              = "fxcozca1dgenvg${random_string.this.result}-circuit"
   express_route_circuit_service_provider_name             = "Equinix"
   express_route_circuit_service_provider_peering_location = "Toronto"
-  express_route_circuit_bandwidth_in_mbps                 = 10
+  express_route_circuit_bandwidth_in_mbps                 = 50
   express_route_circuit_sku_tier                          = "Standard"
   express_route_circuit_sku_family                        = "MeteredData"
   enable_peering_and_connection                           = false
