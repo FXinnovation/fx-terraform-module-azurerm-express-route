@@ -49,6 +49,7 @@ module "az_vnet_demo" {
 
 module "az_expressroute_demo" {
   source                                                  = "../../"
+  resource_group_name                                     = module.az_rg_demo.name
   location                                                = module.az_rg_demo.location
   virtual_network_gateway_public_ip_name                  = "fxcozca1dgenvg${random_string.this.result}-pip"
   virtual_network_gateway_name                            = "fxcozca1dgenvg${random_string.this.result}"
