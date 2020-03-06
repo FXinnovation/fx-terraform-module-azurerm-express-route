@@ -28,7 +28,7 @@ module "az_rg_demo" {
 }
 
 module "az_vnet_demo" {
-  source              = "https://scm.dazzlingwrench.fxinnovation.com/fxinnovation-public/terraform-module-azurerm-virtual-network.git?ref=0.1.0"
+  source              = "git::https://scm.dazzlingwrench.fxinnovation.com/fxinnovation-public/terraform-module-azurerm-virtual-network.git?ref=0.1.0"
   resource_group_name = module.az_rg_demo.name
   location            = module.az_rg_demo.location
   tags                = local.tags
