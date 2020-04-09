@@ -1,31 +1,6 @@
 ######
-# Locals
-######
-
-locals {
-  tags = {
-    FXOwner      = "Test user - Terraform"
-    FXProjet     = "FXCO"
-    FXDepartment = "CloudCICD"
-  }
-}
-
-######
 # Resources
 ######
-
-resource "random_string" "this" {
-  length  = 3
-  upper   = false
-  special = false
-}
-
-module "az_rg_demo" {
-  source   = "git::https://scm.dazzlingwrench.fxinnovation.com/fxinnovation-public/terraform-module-azurerm-resource-group.git?ref=0.3.0"
-  location = "canadacentral"
-  name     = "fxcozca2dgenrg${random_string.this.result}"
-  tags     = local.tags
-}
 
 module "az_expressroute_demo" {
   source                                                  = "../../"

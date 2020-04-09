@@ -11,9 +11,7 @@ This will not create the virtual network gateway until the point a circuit will 
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| random | n/a |
+No provider.
 
 ## Inputs
 
