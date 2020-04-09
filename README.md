@@ -7,16 +7,23 @@ This module needs to be deployed twice to work properly since the ExpressRoute c
 There is a toggle to enable to proceed with the second configuration of the ExpressRoute circuit.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+| azurerm | >= 2.0.0 |
+
 ## Providers
 
 | Name | Version |
 |------|---------|
-| azurerm | >=1.36.0, < 2.0.0 |
+| azurerm | >= 2.0.0 |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | enable\_peering\_and\_connection | Enable the second configuration step for ExpressRoute. | `bool` | `false` | no |
 | enabled | Enable or disable module | `bool` | `true` | no |
 | express\_route\_circuit\_authorization\_name | Name of the autorization token to generate. | `string` | `"ExRouteAuth"` | no |
