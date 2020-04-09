@@ -5,8 +5,8 @@
 module "az_expressroute_demo" {
   source                                                  = "../../"
   enabled                                                 = false
-  resource_group_name                                     = module.az_rg_demo.name
-  location                                                = module.az_rg_demo.location
+  resource_group_name                                     = "tftest"
+  location                                                = "west US"
   virtual_network_gateway_public_ip_name                  = ""
   virtual_network_gateway_name                            = ""
   virtual_network_gateway_sku                             = ""
