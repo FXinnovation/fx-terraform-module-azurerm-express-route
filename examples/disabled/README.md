@@ -3,16 +3,20 @@
 This will not create the virtual network gateway until the point a circuit will provide a service key. We can't go further than that for a test.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Providers
+## Requirements
 
 | Name | Version |
 |------|---------|
-| random | n/a |
+| azurerm | >= 2.0.0 |
+
+## Providers
+
+No provider.
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | client\_id | Azure service principal application Id. | `string` | n/a | yes |
 | client\_secret | Azure service principal application Secret. | `string` | n/a | yes |
 | subscription\_id | Azure subscription Id. | `string` | n/a | yes |
