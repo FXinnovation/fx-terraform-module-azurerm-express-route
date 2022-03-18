@@ -21,7 +21,7 @@ resource "random_string" "this" {
 }
 
 module "az_rg_demo" {
-  source   = "git::https://scm.dazzlingwrench.fxinnovation.com/fxinnovation-public/terraform-module-azurerm-resource-group.git?ref=0.3.0"
+  source   = "git::https://github.com/FXinnovation/fx-terraform-module-azurerm-resource-group.git?ref=0.3.0"
   location = "canadacentral"
   name     = "fxcozca2dgenrg${random_string.this.result}"
   tags     = local.tags
