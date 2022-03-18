@@ -21,14 +21,14 @@ resource "random_string" "this" {
 }
 
 module "az_rg_demo" {
-  source   = "git::https://scm.dazzlingwrench.fxinnovation.com/fxinnovation-public/terraform-module-azurerm-resource-group.git?ref=1.0.0"
+  source   = "git::https://github.com/FXinnovation/fx-terraform-module-azurerm-resource-group.git?ref=1.0.0"
   location = "canadacentral"
   name     = "fxcozca2dgenrg${random_string.this.result}"
   tags     = local.tags
 }
 
 module "az_vnet_demo" {
-  source              = "git::https://scm.dazzlingwrench.fxinnovation.com/fxinnovation-public/terraform-module-azurerm-virtual-network.git?ref=1.0.0"
+  source              = "git::https://github.com/FXinnovation/fx-terraform-module-azurerm-virtual-network.git?ref=1.0.0"
   resource_group_name = module.az_rg_demo.name
   location            = module.az_rg_demo.location
   tags                = local.tags
